@@ -46,22 +46,22 @@ export default function TextForm(props) {
   let textData = formText.trim().split(/\s+/).filter(word => word !== '')
   return (
     <>
-      <div className='container' style={{color: props.mode !== 'primary'? 'white':'#0a0d10'}}>
+      <div className='container' style={{color: props.mode.dark}}>
         <h1 >{props.heading}</h1> 
         <div class="mb-3">
           <textarea className="form-control" id="my-form" onChange={handleOnChange} 
           placeholder='Enter text Here' value={formText} rows="8"
           style={{backgroundColor: props.mode !== 'dark'? 'white':'rgb(94 138 182)', 
-          color: props.mode !== 'primary'? 'white':'#0a0d10'}}></textarea>
+          color: props.mode.text}}></textarea>
         </div>
-        <button className={`btn btn-${props.mode === 'primary'?'primary':'light'} m-2`} onClick={() => handleClick('upper')} >Uppercase</button>
-        <button className={`btn btn-${props.mode === 'primary'?'primary':'light'} m-3`} onClick={() => handleClick('lower')} >Lowercase</button>
-        <button className={`btn btn-${props.mode === 'primary'?'primary':'light'} m-3`} onClick={() => handleClick('captalize')} >Captalize</button>
-        <button className={`btn btn-${props.mode === 'primary'?'primary':'light'} m-3`} onClick={() => handleClick('copy')} >Copy Text</button>
-        <button className={`btn btn-${props.mode === 'primary'?'primary':'light'} m-3`} onClick={() => handleClick('trim')} >Trim spaces</button>
-        <button className={`btn btn-${props.mode === 'primary'?'primary':'light'} m-3`} onClick={() => handleClick('clear')} >Clear text</button>
+        <button className={`btn btn-${props.mode.light} m-2`} onClick={() => handleClick('upper')} >Uppercase</button>
+        <button className={`btn btn-${props.mode.light} m-3`} onClick={() => handleClick('lower')} >Lowercase</button>
+        <button className={`btn btn-${props.mode.light} m-3`} onClick={() => handleClick('captalize')} >Captalize</button>
+        <button className={`btn btn-${props.mode.light} m-3`} onClick={() => handleClick('copy')} >Copy Text</button>
+        <button className={`btn btn-${props.mode.light} m-3`} onClick={() => handleClick('trim')} >Trim spaces</button>
+        <button className={`btn btn-${props.mode.light} m-3`} onClick={() => handleClick('clear')} >Clear text</button>
       </div>
-      <div className="container my-4" style={{color: props.mode !== 'primary'? 'white':'#0a0d10'}}>
+      <div className="container my-4" style={{color: props.mode.text}}>
         <h1>Your Text Summary</h1>
         <p> {textData.length} words, {textData.join(" ").length} characters</p>
         <p>Time to read the Sentence: {(textData.length * 0.008).toFixed(2)} Minutes / {(textData.length * 0.48).toFixed(2)} Seconds </p>

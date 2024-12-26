@@ -9,7 +9,7 @@ export default function Navbar(props) {
     <span className="text-body-secondary">Toggleable via the navbar brand.</span>
   </div>
 </div>
-      <nav className={`navbar navbar-expand-lg bg-${(props.mode)}`} data-bs-theme={`${props.mode}`}>
+      <nav className={`navbar navbar-expand-lg bg-${(props.mode.light)}`} data-bs-theme={`${props.mode.light}`}>
         <div className="container-fluid">
           <a className="navbar-brand" href="/">{props.title}</a>
           <button className="navbar-toggler" type="button" 
@@ -31,15 +31,15 @@ export default function Navbar(props) {
             </ul>
             <div class="nav-item dropdown mx-3">
               <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Dropdown button
+                Themes
               </button>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                <li><button class="dropdown-item" onClick={props.changeTheme('primary')}>Primary</button></li>
+                <li><button class="dropdown-item" onClick={props.changeTheme('Secondary')}>Secondary</button></li>
+                <li><button class="dropdown-item" onClick={props.changeTheme('Green')} >Green</button></li>
               </ul>
             </div>
-            <div className={`form-check form-switch text-${props.mode === 'dark'? 'light':'dark'}`}>
+            <div className={`form-check form-switch text-${props.mode.dark}`}>
               <input className="form-check-input" type="checkbox" role="switch" id="DarkMode" onClick={props.toggleMode}/>
               <label className="form-check-label" for="DarkMode">DarkMode</label>
             </div>
