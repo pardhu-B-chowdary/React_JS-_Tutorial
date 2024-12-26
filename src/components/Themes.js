@@ -2,8 +2,9 @@ import React from 'react'
 
 function Themes(props) {
     let foreColor = 'primary'
-    let backColor = "white"
-  return (foreColor,backColor)
+    let textColor = "black"
+    let background = "white"
+  return (foreColor, textColor, background)
 }
 
 export default Themes
