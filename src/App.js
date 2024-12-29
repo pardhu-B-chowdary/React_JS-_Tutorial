@@ -1,5 +1,5 @@
 import './App.css';
-import React, {use, useState} from 'react';
+import React, {useState} from 'react';
 import Navbar from './components/Navbar';
 import TextForm from './components/TextForm';
 import Alert from './components/Alert';
@@ -8,32 +8,33 @@ import Themes from './components/Themes';
 
 function App() {
   //Enable and Disable Dark Mode.
-  const [mode, setMode] = useState({light:'primary', dark:'dark', text: '#0a0d10'})
+  const [mode, setMode] = useState({main:'primary', sub:'dark', text: '#0a0d10', btn:'primary'})
   const [themeMode, setThemeMode] = useState('light')
   const [theme, setTheme] = useState('Theme_primary')
   const changeTheme =(e) =>{
-    switch (e) {
-      case 'primary':
-        setTheme('Theme_primary')
-        break;
-      default:
-        break;
-    }
-    
+    if (e === 'primary'){
+        // setTheme('Theme_primary')
+        showAlert('Changed mode to Primary', 'danger')}
+    if (e === 'secondary'){
+        // setTheme('Theme_primary')
+        showAlert('Changed mode to Secondary', 'danger')}
+    if (e ==='green'){
+        // setTheme('Theme_primary')
+        showAlert('Changed mode to Dark', 'danger')}
   }
   const toggleMode = () => {
     if (themeMode === 'light'){
       let presTheme = Themes(theme)
       setMode(presTheme.darker)
       setThemeMode('dark')
-      document.body.style.backgroundColor = 'rgb(0 29 58)'
+      document.body.style.backgroundColor = presTheme.darker.bg
       showAlert("Dark Mode is been Enabled", "secondary")
     }
     else {
       let presTheme = Themes(theme)
       setMode(presTheme.lighter)
       setThemeMode('light')
-      document.body.style.backgroundColor = 'white' 
+      document.body.style.backgroundColor = presTheme.lighter.bg
       showAlert("Light Mode is been Enabled", "secondary")
     }
   }

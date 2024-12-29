@@ -3,13 +3,7 @@ import PropTypes from 'prop-types'
 export default function Navbar(props) {
   return (
     <>
-    <div className="collapse" id="navbarToggleExternalContent" data-bs-theme="dark">
-  <div className="bg-dark p-4">
-    <h5 className="text-body-emphasis h4">Collapsed content</h5>
-    <span className="text-body-secondary">Toggleable via the navbar brand.</span>
-  </div>
-</div>
-      <nav className={`navbar navbar-expand-lg bg-${(props.mode.light)}`} data-bs-theme={`${props.mode.light}`}>
+      <nav className={`navbar navbar-expand-lg bg-${((props.mode).main)}`} data-bs-theme={`${(props.mode).main}`}>
         <div className="container-fluid">
           <a className="navbar-brand" href="/">{props.title}</a>
           <button className="navbar-toggler" type="button" 
@@ -34,12 +28,12 @@ export default function Navbar(props) {
                 Themes
               </button>
               <ul class="dropdown-menu">
-                <li><button class="dropdown-item" onClick={props.changeTheme('primary')}>Primary</button></li>
-                <li><button class="dropdown-item" onClick={props.changeTheme('Secondary')}>Secondary</button></li>
-                <li><button class="dropdown-item" onClick={props.changeTheme('Green')} >Green</button></li>
+                <li><button class="dropdown-item" onClick={() => props.changeTheme('primary')}>Primary</button></li>
+                <li><button class="dropdown-item" onClick={() => props.changeTheme('secondary')}>Secondary</button></li>
+                <li><button class="dropdown-item" onClick={() => props.changeTheme('green')} >Green</button></li>
               </ul>
             </div>
-            <div className={`form-check form-switch text-${props.mode.dark}`}>
+            <div className={`form-check form-switch text-${props.mode.sub}`}>
               <input className="form-check-input" type="checkbox" role="switch" id="DarkMode" onClick={props.toggleMode}/>
               <label className="form-check-label" for="DarkMode">DarkMode</label>
             </div>
