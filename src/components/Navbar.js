@@ -1,12 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom';
+import logo from '../components/favicon.ico'
 export default function Navbar(props) {
   return (
     <>
       <nav className={`navbar navbar-expand-lg bg-${((props.mode).main)}`} data-bs-auto-close="true" data-bs-theme={`${(props.mode).main}`}>
         <div className="container-fluid">
-          <a className="navbar-brand" href="/">{props.title}</a>
+          <Link className="navbar-brand" to="/">
+            <img src={logo} alt="Logo" width="30" height="30"  class="d-inline-block align-text-top"/>   
+            {props.title}
+          </Link>
           <button className="navbar-toggler" type="button" 
               data-bs-toggle="collapse" data-bs-target="#navbarContent" 
               aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">

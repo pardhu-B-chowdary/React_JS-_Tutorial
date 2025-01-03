@@ -9,7 +9,6 @@ import About from './components/About';
 
 export default function App() {
   //Enable and Disable Dark Mode.
-  // const [mode, setMode] = useState({main:'primary', sub:'dark', text: '#0a0d10', btn:'primary'})
   const [mode, setMode] = useState(Themes('Theme_primary').lighter)
   const [themeMode, setThemeMode] = useState('light')
   const [theme, setTheme] = useState('Theme_primary')
@@ -63,8 +62,8 @@ export default function App() {
       </div>
       <div className="container my-2">
       <Routes>
-        <Route path="/" element={<TextForm heading = "Enter your text here" mode = {mode} showAlert={showAlert}/>}/>
-        <Route path="/about" element={<About />}/>
+        <Route exact path="/" element={<TextForm heading = "Enter your text here" mode = {mode} showAlert={showAlert}/>}/>
+        <Route exact path="/about" element={<About />}/>
       </Routes>
         {/* {contents[content]} */}
         {/* <TextForm heading = "Enter your text here" mode = {mode} showAlert={showAlert}/> */}
