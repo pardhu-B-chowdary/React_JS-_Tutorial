@@ -1,17 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom';
+import logo from '../components/favicon.ico'
 export default function Navbar(props) {
   return (
     <>
-    <div className="collapse" id="navbarToggleExternalContent" data-bs-theme="dark">
-  <div className="bg-dark p-4">
-    <h5 className="text-body-emphasis h4">Collapsed content</h5>
-    <span className="text-body-secondary">Toggleable via the navbar brand.</span>
-  </div>
-</div>
-      <nav className={`navbar navbar-expand-lg bg-${(props.mode)}`} data-bs-theme={`${props.mode}`}>
+      <nav className={`navbar navbar-expand-lg bg-${((props.mode).main)}`} data-bs-auto-close="true" data-bs-theme={`${(props.mode).main}`}>
         <div className="container-fluid">
-          <a className="navbar-brand" href="/">{props.title}</a>
+          <Link className="navbar-brand" to="/">
+            <img src={logo} alt="Logo" width="30" height="30"  class="d-inline-block align-text-top"/>   
+            {props.title}
+          </Link>
           <button className="navbar-toggler" type="button" 
               data-bs-toggle="collapse" data-bs-target="#navbarContent" 
               aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -20,26 +19,23 @@ export default function Navbar(props) {
           <div className="collapse navbar-collapse" id="navbarContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="/">Home</a>
+                <Link className="nav-link active" aria-current="page" to="/">Home</Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/">About Me</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="/">Additional</a>
+                <Link className="nav-link" to="/about">About Me</Link>
               </li>
             </ul>
-            <div class="nav-item dropdown mx-3">
-              <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Dropdown button
+            <div className="nav-item dropdown mx-3">
+              <button className= {`btn btn-${props.mode.main} dropdown-toggle`} type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Themes
               </button>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
+              <ul className="dropdown-menu">
+                <li><button className="dropdown-item" onClick={() => props.changeTheme('Theme_primary')}>Primary</button></li>
+                <li><button className="dropdown-item" onClick={() => props.changeTheme('Theme_secondary')}>Secondary</button></li>
+                <li><button className="dropdown-item" onClick={() => props.changeTheme('Theme_green')} >Green</button></li>
               </ul>
             </div>
-            <div className={`form-check form-switch text-${props.mode === 'dark'? 'light':'dark'}`}>
+            <div className={`form-check form-switch text-${props.mode.sub}`}>
               <input className="form-check-input" type="checkbox" role="switch" id="DarkMode" onClick={props.toggleMode}/>
               <label className="form-check-label" for="DarkMode">DarkMode</label>
             </div>
