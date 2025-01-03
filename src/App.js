@@ -47,14 +47,6 @@ export default function App() {
     }, 500);
   }
 
-  //Changing diferent windows
-  const [content, setContent] = useState('TextForm')
-  const changeBody = (body) => {setContent(body);}
-  const contents = {
-    TextForm: <TextForm heading = "Enter your text here" mode = {mode} showAlert={showAlert}/>,
-    About: <About/> 
-  }
-
   return (
     <BrowserRouter>
       <div>
@@ -65,9 +57,6 @@ export default function App() {
         <Route exact path="/" element={<TextForm heading = "Enter your text here" mode = {mode} showAlert={showAlert}/>}/>
         <Route exact path="/about" element={<About />}/>
       </Routes>
-        {/* {contents[content]} */}
-        {/* <TextForm heading = "Enter your text here" mode = {mode} showAlert={showAlert}/> */}
-        {/* <About /> */}
       </div>
       <Alert alert = {alert} />
     </BrowserRouter>
