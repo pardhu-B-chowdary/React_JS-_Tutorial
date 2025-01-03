@@ -1,28 +1,28 @@
 import './App.css';
 import React, {useState} from 'react';
+import { BrowserRouter, Routes, Route, Link} from "react-router-dom"
 import Navbar from './components/Navbar';
 import TextForm from './components/TextForm';
 import Alert from './components/Alert';
 import Themes from './components/Themes';
-//import About from './components/About';
+import About from './components/About';
 
-function App() {
+export default function App() {
   //Enable and Disable Dark Mode.
-  const [mode, setMode] = useState({main:'primary', sub:'dark', text: '#0a0d10', btn:'primary'})
+  // const [mode, setMode] = useState({main:'primary', sub:'dark', text: '#0a0d10', btn:'primary'})
+  const [mode, setMode] = useState(Themes('Theme_primary').lighter)
   const [themeMode, setThemeMode] = useState('light')
   const [theme, setTheme] = useState('Theme_primary')
+  const [myStyle, setMyStyle] = useState({color: 'black', backgroundColor: 'white', border: '1px solid white'})
+  
   const changeTheme =(e) =>{
-    if (e === 'primary'){
-        // setTheme('Theme_primary')
-        showAlert('Changed mode to Primary', 'danger')}
-    if (e === 'secondary'){
-        // setTheme('Theme_primary')
-        showAlert('Changed mode to Secondary', 'danger')}
-    if (e ==='green'){
-        // setTheme('Theme_primary')
-        showAlert('Changed mode to Dark', 'danger')}
+    let presTheme = themeMode !== 'dark'? Themes(e).lighter: Themes(e).darker
+    setTheme(e)
+    setMode(presTheme)
+    document.body.style.backgroundColor = presTheme.bg
+    showAlert(`Changed mode to ${e}`, 'danger')
   }
-  const toggleMode = () => {
+  const toggleMode = (e) => {
     if (themeMode === 'light'){
       let presTheme = Themes(theme)
       setMode(presTheme.darker)
@@ -45,19 +45,32 @@ function App() {
     setAlert({msg:message, type:type})
     setTimeout(() => {
       setAlert(null)
-    }, 1000);
+    }, 500);
   }
-    
+
+  //Changing diferent windows
+  const [content, setContent] = useState('TextForm')
+  const changeBody = (body) => {setContent(body);}
+  const contents = {
+    TextForm: <TextForm heading = "Enter your text here" mode = {mode} showAlert={showAlert}/>,
+    About: <About/> 
+  }
+
   return (
-    <>
-      <Navbar title = 'Pardhu App' mode = {mode} toggleMode ={toggleMode} changeTheme ={changeTheme}/>
+    <BrowserRouter>
+      <div>
+        <Navbar title = 'Pardhu App' mode = {mode} toggleMode ={toggleMode} changeTheme ={changeTheme} changeBody ={changeBody} />
+      </div>
       <div className="container my-2">
-        <TextForm heading = "Enter your text here" mode = {mode} showAlert={showAlert}/>
+      <Routes>
+        <Route path="/" element={<TextForm heading = "Enter your text here" mode = {mode} showAlert={showAlert}/>}/>
+        <Route path="/about" element={<About />}/>
+      </Routes>
+        {/* {contents[content]} */}
+        {/* <TextForm heading = "Enter your text here" mode = {mode} showAlert={showAlert}/> */}
         {/* <About /> */}
       </div>
       <Alert alert = {alert} />
-    </>
+    </BrowserRouter>
   );
 }
-
-export default App;
